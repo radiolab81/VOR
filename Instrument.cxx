@@ -42,7 +42,10 @@ volatile float frequency=110450000; // VOR-Frequenz in Hz
 
 void set_receiver_freq() {
    char cmd[32] = "./xmlrpc_client.py ";
-   strcat(cmd,std::to_string(frequency).c_str());
+   //strcat(cmd,(std::to_string(frequency)).c_str());
+   char buf[16];
+   sprintf(buf,"%d", (int)frequency);
+   strcat(cmd,buf);
    system(cmd);
 }
 
@@ -196,7 +199,7 @@ int main(void) {
 	SDL_Event event;
 	SDL_Renderer *renderer = NULL;
 	SDL_Window *window = NULL;
-  
+
    	SDL_Texture *textur_background = NULL;
     	SDL_Texture *textur_rosette = NULL;
         SDL_Texture *textur_needle = NULL;
@@ -218,8 +221,8 @@ int main(void) {
 	SDL_Rect freq_rect;
 	freq_rect.x = rect_background.w/4; freq_rect.y= rect_background.h/2-(rect_background.h*0.1);
 	freq_rect.w = 80; freq_rect.h = 30;
-	char freq[16];	 
-	
+	char freq[16];
+
 
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0) {
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Konnte SDL nicht initialisieren: %s", SDL_GetError());
@@ -305,7 +308,7 @@ int main(void) {
 		SDL_RenderCopy(renderer, textur_background, NULL, &rect_background);
                 SDL_RenderCopyEx(renderer, textur_rosette, NULL, &rect_background,heading,NULL,SDL_FLIP_NONE);
 		SDL_RenderCopy(renderer, textur_marker, NULL, &rect_background);
-		
+
 		SDL_RenderCopy(renderer, textur_freq, NULL, &freq_rect);
 
 		if (b_from_to == FROM) {
@@ -330,21 +333,21 @@ int main(void) {
 		  if (event.key.keysym.scancode == SDL_SCANCODE_A)
 		    if (heading<359)
 		      heading++;
-		    else 
+		    else
 		      heading=0;
 
 		  if (event.key.keysym.scancode == SDL_SCANCODE_S)
 		    if (heading>0)
 		      heading--;
-		    else 
+		    else
 		      heading=359;
-		    
+
 
 		  if (event.key.keysym.scancode == SDL_SCANCODE_P)
-		    next_freq(); 
-		  
+		    next_freq();
+
  		  if (event.key.keysym.scancode == SDL_SCANCODE_O)
-		    prev_freq(); 
+		    prev_freq();
 
 		  if (event.key.keysym.scancode == SDL_SCANCODE_T)
 		    b_from_to=!b_from_to;
@@ -353,6 +356,11 @@ int main(void) {
 		SDL_Delay(1000/BILDER_PRO_SEKUNDE);
 
 // Aufraeumarbeiten pro Frame
+        if (textur_freq)
+           SDL_DestroyTexture(textur_freq);
+
+        if (surface_freq)
+           SDL_FreeSurface(surface_freq);
 
 	} // while(1)
 

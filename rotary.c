@@ -4,15 +4,16 @@
 #include <stdlib.h>
 #include <wiringPi.h>
 
-#define  RoAPin    0  // GPIO-Pin 17, Pinnummer 11
-#define  RoBPin    1  // GPIO-Pin 18, Pinnummer 12
+#define  RoAPin    2
+#define  RoBPin    3
 
 unsigned char flag;
 unsigned char Last_RoB_Status;
 unsigned char Current_RoB_Status;
 
-#define  RoAPinHdg    2  
-#define  RoBPinHdg    3  
+
+#define  RoAPinHdg    0
+#define  RoBPinHdg    1
 
 unsigned char flagHdg;
 unsigned char Last_RoB_StatusHdg;
@@ -32,14 +33,15 @@ void rotaryDialFreq(void)
 	if(flag == 1){
 		flag = 0;
 		if((Last_RoB_Status == 0)&&(Current_RoB_Status == 1)){
-			system("echo \"frq+\" | nc 127.0.0.1 1235 -w 0");
+			system("echo \"frq+\" | nc -u 127.0.0.1 1235 -w 0");
 		}
 		if((Last_RoB_Status == 1)&&(Current_RoB_Status == 0)){
-			system("echo \"frq-\" | nc 127.0.0.1 1235 -w 0");
+			system("echo \"frq-\" | nc -u 127.0.0.1 1235 -w 0");
 		}
 
 	}
 }
+
 
 void rotaryDialHdg(void)
 {
@@ -53,10 +55,10 @@ void rotaryDialHdg(void)
 	if(flagHdg == 1){
 		flagHdg = 0;
 		if((Last_RoB_StatusHdg == 0)&&(Current_RoB_StatusHdg == 1)){
-			system("echo \"hdg+\" | nc 127.0.0.1 1235 -w 0");
+			system("echo \"hdg+\" | nc -u 127.0.0.1 1235 -w 0");
 		}
 		if((Last_RoB_StatusHdg == 1)&&(Current_RoB_StatusHdg == 0)){
-			system("echo \"hdg-\" | nc 127.0.0.1 1235 -w 0");
+			system("echo \"hdg-\" | nc -u 127.0.0.1 1235 -w 0");
 		}
 
 	}
@@ -82,9 +84,9 @@ int main(void)
 	while(1){
 		rotaryDialFreq();
 		rotaryDialHdg();
-        if (digitalRead(ToFromPin) == 0){
-           system("echo \"tofr\" | nc -u 127.0.0.1 1235 -w 0");
-        }
+                if (digitalRead(ToFromPin) == 1){
+                  system("echo \"tofr\" | nc -u 127.0.0.1 1235 -w 0");
+                }
         delay(10);
 	}
 
