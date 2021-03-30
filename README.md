@@ -27,7 +27,13 @@ In dieser Abbildung beträgt der Phasenversatz beider 30Hz Signale 105°, das Fl
 
 Die Radialgenauigkeit solcher Funkfeuer wird je nach Bauart im Mittel mit 1-1.5° angegeben.Mit Hilfe zweier VOR-Stationen lässt sich somit ziemlich gut die eigene Position feststellen. Einige VOR besitzen noch eine DME-Einrichtung. DME bedeutet Distance Measuring Equipment, also eine Einrichtung zur Entfernungsmessung. Die DME-Unit arbeitet im Frequenzbereich um 1 GHz, ist also nicht Bestandteil des VOR-Signals. Eine DME-Einheit im Flugzeug sendet hierbei Pulse aus, die von der DME-Einheit am VOR wie eine Relaisstation zurückgestahlt werden. Durch die Signallaufzeit kann die DME-Einheit im Flugzeug somit die Schrägentfernung zur DME-Einheit am VOR bereichnen.  
  
-### Aufbau des Softwareempfängers
+### Aufbau des Empfängers
+
+Unser Empfänger arbeitet nach dem Software-Defined-Radio Prinzip. Er besteht aus dem Harwarefrontend (zum Beispiel einen RTLSDR-USB Stick, Adalm Pluto, LimeSDR o.ä.) welches die Antennenspannung digitalisiert und diese Rohdaten an Software weiterleitet. Die ganze Signalverabeitung, also Demodulation und Darstellung des Signals erfolgt über Software.
+Diese Software ist unterteilt in Signalverarbeitung (VORreceiver.grc -> VORreceiver.py), Signaldarstellung (Instrument.cxx) und ein paar Scripts die diese Komponenten miteinander verbinden und den Empfänger starten oder stoppen.
+
+
+
 
 
 
