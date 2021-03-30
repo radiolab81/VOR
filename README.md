@@ -25,4 +25,8 @@ Das Sendesignal eines VOR besteht empfängerseitig aus zwei 30 Hz Signalen. Eine
 In dieser Abbildung beträgt der Phasenversatz beider 30Hz Signale 105°, das Flugzeug fliegt also auf dem 105°-Radial (Lichtkegel bei einem Leuchtturm).  
 ![vor5](https://upload.wikimedia.org/wikipedia/commons/d/d1/VOR_principle.gif)
 
+Die Radialgenauigkeit solcher Funkfeuer je nach Bauart im Mittel mit 1-1.5° angegeben. Mit Hilfe zweier VOR-Stationen lässt sich somit ziemlich gut die eigene Position feststellen.
+
+
+
 
