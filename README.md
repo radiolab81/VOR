@@ -58,9 +58,16 @@ Die auf 0-360° skalierte Phasenverschiebung wird dann als numerischer Wert paus
 
 Das gerade gezeigte GRC-Programm dient als Grundlage zur Erzeugung des Signalverarbeitungsskiptes, welches den Namen VORreceiver.py trägt. Bei Änderungen in der Signalverarbeitung (zum Beispiel Auswahl eines anderen HF-Frontendbausteins), muss dieses Skript durch GNU-Radio Companion neu erzeugt werden.
 
-Eine weitere Softwarekomponente des Radiokompass ist unser Instrument, dessen Quellcode sich in Instrument.cxx befindet. Es nimmt die ermittelte Phasenverschiebung über Port 1234 vom GRC-Programm auf und zeichnet den eigentlichen Kompass. Die Darstellung der Richtungsangabe erfolgt dann wahlweise im VOM-VOR oder ZUM-VOR (inbound/outbound) Kurs. 
+Eine weitere Softwarekomponente des Radiokompass ist unser Instrument, dessen Quellcode sich in Instrument.cxx befindet. Es nimmt die ermittelte Phasenverschiebung über Port 1234 vom GRC-Programm auf und zeichnet den eigentlichen Kompass. Die Darstellung der Richtungsangabe erfolgt dann wahlweise im ZUM-VOR oder VOM-VOR (inbound/outbound) Kurs. 
 
 ![vor10](https://github.com/BM45/VOR/blob/main/pics4www/Vor_inbound_outbound.jpg)
+
+Die Umstellung der Darstellung kann durch Tastendruck "T" oder über ein externes Bedienelement erfolgen. 
+Zusätzlich zeigt das Instrument auch die am SDR eingestellte Frequenz an. Diese kann durch die Tasten O und P (oder externen Drehencoder) verstellt werden.
+Das Instrument zeigt den FROM/TO-Kurs nach dem Start standardmäßig genordet an. Der Kompass kann mittels Tasten A und S (oder externen Drehencoder) auch aus der Nordlage heraus auf die tatsächliche Bewegungsrichtung eingestellt werden. Die Richtungsnadel vom/zum VOR berücksichtigt dies.
+
+
+
 
 
 
