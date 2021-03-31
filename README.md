@@ -66,6 +66,24 @@ Die Umstellung der Darstellung kann durch Tastendruck "T" oder über ein externe
 Zusätzlich zeigt das Instrument auch die am SDR eingestellte Frequenz an. Diese kann durch die Tasten O und P (oder externen Drehencoder) verstellt werden.
 Das Instrument zeigt den FROM/TO-Kurs nach dem Start standardmäßig genordet an. Der Kompass kann mittels Tasten A und S (oder externen Drehencoder) auch aus der Nordlage heraus auf die tatsächliche Bewegungsrichtung eingestellt werden. Die Richtungsnadel vom/zum VOR berücksichtigt dies.
 
+Anstelle der Tastenbedienung können auch zwei Drehencoder (zum Beispiel an den GPIOs eines Raspberrys) angeschlossen werden. Die dafür nötige Softwarekomponente (rotary.c -> gpiod) liegt dem Projekt bei.
+
+## Installation
+
+Als Grundvoraussetzung wird ein Linux-System mit installiertem C/C++ Compilersystem, GNU-Radio Umgebung mit Treibern für das jeweilige HF-Frontend und der SDL2-Bibliothek vorausgesetzt. Bei der Verwendung externer Drehencoder an einem Raspberry Pi, zur Steuerung des Instruments, wird noch die wiringPi-Bibliothek benötigt. 
+
+Nach dem Checkout des Projektes ins lokale Dateisystem mittels github:
+
+`git clone https://github.com/BM45/VOR`
+
+wird die Installation wie folgt eingeleitet:
+
+`cd VOR`
+
+`./build.sh`
+
+Danach liegen alles Komponenten vor. Standardmäßig wird für den Empfang des VOR ein RTLSDR USB-Stick genutzt. Andere SDRs sind wie oben beschrieben möglich. 
+Nach Aufruf von ./start.sh startet bei angeschlossenem HF-Frontend der Empfang, die Signalverarbeitung und das Instrument. Mit ./stop.sh werden alle Komponenten beendet.
 
 
 
