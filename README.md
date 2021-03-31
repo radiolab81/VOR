@@ -10,7 +10,7 @@ VORs sind Funkstationen die zur Navigation vornehmlich im UKW-Flugfunkbereich op
 
 ![vor2](https://github.com/BM45/VOR/blob/main/pics4www/vorreal.jpg)
 
-VORs befinden sich in der Nähe wichtiger Flugrouten oder an Flughäfen. Über dieses VORs kann man seine Position auch ohne Satellitennavigationssystem wie GPS oder GALILEO gut und ausreichend genau bestimmen. Ein Flugzeug kann sich also entlang dieser Flugfunkfeuer bis zu seinem Ziel hangeln. Aktive VORs findet man in Flugkarten eingezeichnet, diese gibt es für die eigene Region zum Beispiel unter skyvector.com . Hier ein Kartensusschnitt mit VORs um Frankfurt/Main.
+VORs befinden sich in der Nähe wichtiger Flugrouten oder an Flughäfen. Über dieses VORs kann man seine Position auch ohne Satellitennavigationssysteme wie GPS oder GALILEO gut und ausreichend genau bestimmen. Ein Flugzeug kann sich also entlang dieser Flugfunkfeuer bis zu seinem Ziel hangeln. Aktive VORs findet man in Flugkarten eingezeichnet, diese gibt es für die eigene Region zum Beispiel unter skyvector.com . Hier ein Kartenausschnitt mit VORs um Frankfurt/Main.
 
 ![vor3](https://github.com/BM45/VOR/blob/main/pics4www/skyvector_com.jpg)
 
