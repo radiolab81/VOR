@@ -56,8 +56,11 @@ Die auf 0-360° skalierte Phasenverschiebung wird dann als numerischer Wert paus
 
 Über einen Bandpassfilter wird der Bereich von 300-3300Hz aus dem Basisband herausgefiltert und als Audio zur Standardsoundkarte des Rechners weitergeleitet. Über diese Audioinformation kann man herausfinden ob ein VOR-Signal überhaupt empfangen wird, die Anzeige des Instruments also gültig ist, und um welches VOR es sich handelt. 
 
+Das gerade gezeigte GRC-Programm dient als Grundlage zur Erzeugung des Signalverarbeitungsskiptes, welches den Namen VORreceiver.py trägt. Bei Änderungen in der Signalverarbeitung (zum Beispiel Auswahl eines anderen HF-Frontendbausteins), muss dieses Skript durch GNU-Radio Companion neu erzeugt werden.
 
+Eine weitere Softwarekomponente des Radiokompass ist unser Instrument, dessen Quellcode sich in Instrument.cxx befindet. Es nimmt die ermittelte Phasenverschiebung über Port 1234 vom GRC-Programm auf und zeichnet den eigentlichen Kompass. Die Darstellung der Richtungsangabe erfolgt dann wahlweise im VOM-VOR oder ZUM-VOR (inbound/outbound) Kurs. 
 
+![vor10](https://github.com/BM45/VOR/blob/main/pics4www/Vor_inbound_outbound.jpg)
 
 
 
