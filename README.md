@@ -26,11 +26,37 @@ In dieser Abbildung beträgt der Phasenversatz beider 30Hz Signale 105°, das Fl
 ![vor5](https://upload.wikimedia.org/wikipedia/commons/d/d1/VOR_principle.gif)
 
 Die Radialgenauigkeit solcher Funkfeuer wird je nach Bauart im Mittel mit 1-1.5° angegeben.Mit Hilfe zweier VOR-Stationen lässt sich somit ziemlich gut die eigene Position feststellen. Einige VOR besitzen noch eine DME-Einrichtung. DME bedeutet Distance Measuring Equipment, also eine Einrichtung zur Entfernungsmessung. Die DME-Unit arbeitet im Frequenzbereich um 1 GHz, ist also nicht Bestandteil des VOR-Signals. Eine DME-Einheit im Flugzeug sendet hierbei Pulse aus, die von der DME-Einheit am VOR wie eine Relaisstation zurückgestahlt werden. Durch die Signallaufzeit kann die DME-Einheit im Flugzeug somit die Schrägentfernung zur DME-Einheit am VOR bereichnen.  
+
+Zusätzlich enthält das Signalkomplex im Bereich von 300-3300Hz ein Identificationssignal der VOR Station. Hier wird ununterbrochen die Kennung des VOR als Morsecode oder weitere Information als Sprache übertragen.
  
 ### Aufbau des Empfängers
 
-Unser Empfänger arbeitet nach dem Software-Defined-Radio Prinzip. Er besteht aus dem Harwarefrontend (zum Beispiel einen RTLSDR-USB Stick, Adalm Pluto, LimeSDR o.ä.) welches die Antennenspannung digitalisiert und diese Rohdaten an Software weiterleitet. Die ganze Signalverabeitung, also Demodulation und Darstellung des Signals erfolgt über Software.
+Unser Empfänger arbeitet nach dem Software-Defined-Radio Prinzip. Er besteht aus dem HF-Frontend (zum Beispiel einen RTLSDR-USB Stick, Adalm Pluto, LimeSDR o.ä.) welches die Antennenspannung digitalisiert und diese Rohdaten an Software weiterleitet. Die ganze Signalverabeitung, also Demodulation und Darstellung des Signals erfolgt über Software.
 Diese Software ist unterteilt in Signalverarbeitung (VORreceiver.grc -> VORreceiver.py), Signaldarstellung (Instrument.cxx) und ein paar Scripts die diese Komponenten miteinander verbinden und den Empfänger starten oder stoppen.
+
+Die Signalverarbeitung wurde mit dem Werkzeug GNU-Radio Companion (GRC) erstellt. Die Teilbereiche des Empfängers will ich nachfolgend darstellen.
+
+![vor6](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_sampling.jpg)
+
+In diesem Teil wird die vom HF-Frontend abgetastete Antennespannung mit einer Samplerate von 2.048 MSPS eingelesen. Standardmäßig ist der HF-Frontendbaustein für einen RTLSDR USB Stick aktiv. Für andere Frontends oder im Vorfeld in einer Datei aufgezeichnete Hochfrequenz sind bereits Bausteine im Programm vorhanden, sie müssen vor der Verwendung nur per Mausklick aktiv geschaltet werden. Die abgetasteten Datenwerte werden um den Faktor 64 dezimiert (die geringe Bandbreite eines VOR-Signals lässt das zu und es ergibt sich ein Dezimierungsgewinn). Im Anschluss erfolgt die AM-Demodulation des Signals und die weitergabe in eine virtuelle Senke im Programm.
+
+Im nächsten Schritt
+
+![vor7](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_ref_var_sig.jpg)
+
+erfolgt die Gewinnung beider 30Hz Signale, das eine in Trägerlage, das andere vom 9960Hz Unterträger. Das 0°-Nordsignal und die Richtungskomponente werden wiederum in Senken gegeben.
+
+Die Auswertung der Phasenverschiebung beider Signale erfolgt in diesem Teil.
+
+![vor8](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_diff.jpg)
+
+Die auf 0-360° skalierte Phasenverschiebung wird dann als numerischer Wert pausenlos über eine UDP-Senke auf Port 1234 für weitere Softwarekomponenten (zum Beispiel dem Anzeigeninstrument) zur Verfügung gestellt.
+
+![vor9](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_ident.jpg)
+
+Über einen Bandpassfilter wird der Bereich von 300-3300Hz aus dem Basisband herausgefiltert und als Audio zur Standardsoundkarte des Rechners weitergeleitet. Über diese Audioinformation kann man herausfinden ob ein VOR-Signal überhaupt empfangen wird, die Anzeige des Instruments also gültig ist, und um welches VOR es sich handelt. 
+
+
 
 
 
