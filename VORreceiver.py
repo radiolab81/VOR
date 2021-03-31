@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Vorreceiver
-# Generated: Mon Mar 29 14:04:40 2021
+# Generated: Wed Mar 31 08:12:04 2021
 ##################################################
 
 
@@ -81,7 +81,7 @@ class VORreceiver(gr.top_block):
         self.blocks_complex_to_arg_0 = blocks.complex_to_arg(1)
         self.blocks_add_const_vxx_1 = blocks.add_const_vff((360, ))
         self.band_pass_filter_0 = filter.fir_filter_fff(1, firdes.band_pass(
-        	1, samp_rate/64, 920, 1120, 100, firdes.WIN_HAMMING, 6.76))
+        	1, samp_rate/64, 300, 3300, 100, firdes.WIN_HAMMING, 6.76))
         self.audio_sink_0_0 = audio.sink(32000, '', False)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate/64, analog.GR_COS_WAVE, -9960, 1, 0)
         self.analog_fm_demod_cf_0 = analog.fm_demod_cf(
@@ -99,8 +99,6 @@ class VORreceiver(gr.top_block):
         	audio_pass=12000,
         	audio_stop=13000,
         )
-
-
 
         ##################################################
         # Connections
@@ -136,7 +134,7 @@ class VORreceiver(gr.top_block):
         self.low_pass_filter_0_1.set_taps(firdes.low_pass(1, self.samp_rate/64, 1000, 500, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate/64, 1000, 500, firdes.WIN_HAMMING, 6.76))
         self.fir_filter_xxx_0.set_taps((filter.optfir.low_pass(1, self.samp_rate/64, 100, 200, 0.1,  60)))
-        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate/64, 920, 1120, 100, firdes.WIN_HAMMING, 6.76))
+        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate/64, 300, 3300, 100, firdes.WIN_HAMMING, 6.76))
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate/64)
 
     def get_freq(self):
