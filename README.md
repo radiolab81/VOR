@@ -39,13 +39,13 @@ Die Signalverarbeitung wurde mit dem Werkzeug GNU-Radio Companion (GRC) erstellt
 
 ![vor6](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_sampling.jpg)
 
-In diesem Teil wird die vom HF-Frontend abgetastete Antennespannung mit einer Samplerate von 2.048 MSPS eingelesen. Standardmäßig ist der HF-Frontendbaustein für einen RTLSDR USB Stick aktiv. Für andere Frontends oder im Vorfeld in einer Datei aufgezeichnete Hochfrequenz sind bereits Bausteine im Programm vorhanden, sie müssen vor der Verwendung nur per Mausklick aktiv geschaltet werden. Die abgetasteten Datenwerte werden um den Faktor 64 dezimiert (die geringe Bandbreite eines VOR-Signals lässt das zu und es ergibt sich ein Dezimierungsgewinn). Im Anschluss erfolgt die AM-Demodulation des Signals und die weitergabe in eine virtuelle Senke im Programm.
+In diesem Teil wird die vom HF-Frontend abgetastete Antennespannung mit einer Samplerate von 2.048 MSPS eingelesen. Standardmäßig ist der HF-Frontendbaustein für einen RTLSDR USB Stick aktiv. Für andere Frontends oder im Vorfeld in einer Datei aufgezeichnete Hochfrequenz sind bereits Bausteine im Programm vorhanden, sie müssen vor der Verwendung nur per Mausklick aktiv geschaltet werden. Die abgetasteten Datenwerte werden um den Faktor 64 dezimiert (die geringe Bandbreite eines VOR-Signals lässt das zu und es ergibt sich ein Dezimierungsgewinn). Im Anschluss erfolgt die AM-Demodulation des Signals und die Weitergabe in eine virtuelle Senke im Programm.
 
 Im nächsten Schritt
 
 ![vor7](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_ref_var_sig.jpg)
 
-erfolgt die Gewinnung beider 30Hz Signale, das eine in Trägerlage, das andere vom 9960Hz Unterträger. Das 0°-Nordsignal und die Richtungskomponente werden wiederum in Senken gegeben.
+erfolgt die Gewinnung beider 30Hz Signale, dass eine in Trägerlage, dass andere vom 9960Hz Unterträger. Das 0°-Nordsignal und die Richtungskomponente werden wiederum in Senken gegeben.
 
 Die Auswertung der Phasenverschiebung beider Signale erfolgt in diesem Teil.
 
@@ -83,7 +83,7 @@ wird die Installation wie folgt eingeleitet:
 
 `./build.sh`
 
-Danach liegen alles Komponenten vor. Standardmäßig wird für den Empfang des VOR ein RTLSDR USB-Stick genutzt. Andere SDRs sind wie oben beschrieben möglich. 
+Danach liegen alle Komponenten vor. Standardmäßig wird für den Empfang des VOR ein RTLSDR USB-Stick genutzt. Andere SDRs sind wie oben beschrieben möglich. 
 Nach Aufruf von ./start.sh startet bei angeschlossenem HF-Frontend der Empfang, die Signalverarbeitung und das Instrument. Mit ./stop.sh werden alle Komponenten beendet.
 
 
