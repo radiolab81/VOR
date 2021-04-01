@@ -25,9 +25,10 @@ Das Sendesignal eines VOR besteht empfängerseitig aus zwei 30 Hz Signalen. Eine
 In dieser Abbildung beträgt der Phasenversatz beider 30Hz Signale 105°, das Flugzeug fliegt also auf dem 105°-Radial (Lichtkegel bei einem Leuchtturm).  
 ![vor5](https://upload.wikimedia.org/wikipedia/commons/d/d1/VOR_principle.gif)
 
-Die Radialgenauigkeit solcher Funkfeuer wird je nach Bauart im Mittel mit 1-1.5° angegeben.Mit Hilfe zweier VOR-Stationen lässt sich somit ziemlich gut die eigene Position feststellen. Einige VOR besitzen noch eine DME-Einrichtung. DME bedeutet Distance Measuring Equipment, also eine Einrichtung zur Entfernungsmessung. Die DME-Unit arbeitet im Frequenzbereich um 1 GHz, ist also nicht Bestandteil des VOR-Signals. Eine DME-Einheit im Flugzeug sendet hierbei Pulse aus, die von der DME-Einheit am VOR wie eine Relaisstation zurückgestahlt werden. Durch die Signallaufzeit kann die DME-Einheit im Flugzeug somit die Schrägentfernung zur DME-Einheit am VOR bereichnen.  
 
 Zusätzlich enthält das Signalkomplex im Bereich von 300-3300Hz ein Identificationssignal der VOR Station. Hier wird ununterbrochen die Kennung des VOR als Morsecode oder weitere Information als Sprache übertragen.
+
+Die Radialgenauigkeit solcher Funkfeuer wird je nach Bauart im Mittel mit 1-1.5° angegeben.Mit Hilfe zweier VOR-Stationen lässt sich somit ziemlich gut die eigene Position feststellen. Einige VOR besitzen noch eine DME-Einrichtung. DME bedeutet Distance Measuring Equipment, also eine Einrichtung zur Entfernungsmessung. Die DME-Unit arbeitet im Frequenzbereich um 1 GHz, ist also nicht Bestandteil des VOR-Signals. Eine DME-Einheit im Flugzeug sendet hierbei Pulse aus, die von der DME-Einheit am VOR wie eine Relaisstation zurückgestahlt werden. Durch die Signallaufzeit kann die DME-Einheit im Flugzeug somit die Schrägentfernung zur DME-Einheit am VOR bereichnen.  
  
 ### Aufbau des Empfängers
 
