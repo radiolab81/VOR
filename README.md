@@ -1,6 +1,6 @@
 # VOR
 
-![vor](https://github.com/BM45/VOR/blob/main/pics4www/VOR.jpg)
+![vor](https://github.com/radiolab81/VOR/blob/main/pics4www/VOR.jpg)
 
 VOR - ein experimenteller Radiokompass für gerichtete Drehfunkfeuer (VORs) für PC und Raspberry auf Basis eines Software-Defined-Radio
 
@@ -8,17 +8,17 @@ VOR - ein experimenteller Radiokompass für gerichtete Drehfunkfeuer (VORs) für
 
 VORs sind Funkstationen die zur Navigation vornehmlich im UKW-Flugfunkbereich operieren. Im Gegensatz zu nicht-gerichteten Funkfeuern (u.a. NDBs auf Langwelle), die auf Seiten des Empfängers zum Beispiel mit einer sich drehenden Antenne angepeilt werden müssen, senden VORs die relative Richtung Sender<->Empänger "codiert" mit, können also mit einem einfachen Rundstrahler wie einer Teleskopantenne empfangen werden. Typische VOR-Sendestationen sehen so aus.
 
-![vor2](https://github.com/BM45/VOR/blob/main/pics4www/vorreal.jpg)
+![vor2](https://github.com/radiolab81/VOR/blob/main/pics4www/vorreal.jpg)
 
 VORs befinden sich in der Nähe wichtiger Flugrouten oder an Flughäfen. Über dieses VORs kann man seine Position auch ohne Satellitennavigationssysteme wie GPS oder GALILEO gut und ausreichend genau bestimmen. Ein Flugzeug kann sich also entlang dieser Flugfunkfeuer bis zu seinem Ziel hangeln. Aktive VORs findet man in Flugkarten eingezeichnet, diese gibt es für die eigene Region zum Beispiel unter skyvector.com . Hier ein Kartenausschnitt mit VORs um Frankfurt/Main.
 
-![vor3](https://github.com/BM45/VOR/blob/main/pics4www/skyvector_com.jpg)
+![vor3](https://github.com/radiolab81/VOR/blob/main/pics4www/skyvector_com.jpg)
 
 ### Wie ist das Signal eines VOR aufgebaut?
 
 Um die Funktionsweise eines VOR zu verstehen, schaut man sich am Besten das Signalspektrum einer solchen Station an.
 
-![vor4](https://github.com/BM45/VOR/blob/main/pics4www/spektrumvor.jpg)
+![vor4](https://github.com/radiolab81/VOR/blob/main/pics4www/spektrumvor.jpg)
 
 Das Sendesignal eines VOR besteht empfängerseitig aus zwei 30 Hz Signalen. Eines in Trägerlage und eines auf einem 9960Hz Unterträger. Ein 30Hz Signal erscheint im Empfänger immer dann, wenn das Richtfunkfeuer wie ein Leuchtturm in Richtung Norden (0°) "leuchten" würde. Das zweite 30-Hz Signal ist eine Richtungskomponente, die Empfängerseitig phasenschoben aufgenommen wird. Diese Richtungskomponente ist mit dem 0°-Nordsignal synchronisiert. Durch die Messung des Phasenversatzes beider 30Hz-Signale (die Phasenverschiebung kann ja nur zwischen 0° und 360° sein) erhält man die Richtungsinformation Sender<->Empfänger.
 
@@ -37,23 +37,23 @@ Diese Software ist unterteilt in Signalverarbeitung (VORreceiver.grc -> VORrecei
 
 Die Signalverarbeitung wurde mit dem Werkzeug GNU-Radio Companion (GRC) erstellt. Die Teilbereiche des Empfängers will ich nachfolgend darstellen.
 
-![vor6](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_sampling.jpg)
+![vor6](https://github.com/radiolab81/VOR/blob/main/pics4www/VORreceiver_grc_sampling.jpg)
 
 In diesem Teil wird die vom HF-Frontend abgetastete Antennespannung mit einer Samplerate von 2.048 MSPS eingelesen. Standardmäßig ist der HF-Frontendbaustein für einen RTLSDR USB Stick aktiv. Für andere Frontends oder im Vorfeld in einer Datei aufgezeichnete Hochfrequenz sind bereits Bausteine im Programm vorhanden, sie müssen vor der Verwendung nur per Mausklick aktiv geschaltet werden. Die abgetasteten Datenwerte werden um den Faktor 64 dezimiert (die geringe Bandbreite eines VOR-Signals lässt das zu und es ergibt sich ein Dezimierungsgewinn). Im Anschluss erfolgt die AM-Demodulation des Signals und die Weitergabe in eine virtuelle Senke im Programm.
 
 Im nächsten Schritt
 
-![vor7](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_ref_var_sig.jpg)
+![vor7](https://github.com/radiolab81/VOR/blob/main/pics4www/VORreceiver_grc_ref_var_sig.jpg)
 
 erfolgt die Gewinnung beider 30Hz Signale, dass eine in Trägerlage, dass andere vom 9960Hz Unterträger. Das 0°-Nordsignal und die Richtungskomponente werden wiederum in Senken gegeben.
 
 Die Auswertung der Phasenverschiebung beider Signale erfolgt in diesem Teil.
 
-![vor8](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_diff.jpg)
+![vor8](https://github.com/radiolab81/VOR/blob/main/pics4www/VORreceiver_grc_diff.jpg)
 
 Die auf 0-360° skalierte Phasenverschiebung wird dann als numerischer Wert pausenlos über eine UDP-Senke auf Port 1234 für weitere Softwarekomponenten (zum Beispiel dem Anzeigeninstrument) zur Verfügung gestellt.
 
-![vor9](https://github.com/BM45/VOR/blob/main/pics4www/VORreceiver_grc_ident.jpg)
+![vor9](https://github.com/radiolab81/VOR/blob/main/pics4www/VORreceiver_grc_ident.jpg)
 
 Über einen Bandpassfilter wird der Bereich von 300-3300Hz aus dem Basisband herausgefiltert und als Audio zur Standardsoundkarte des Rechners weitergeleitet. Über diese Audioinformation kann man herausfinden ob ein VOR-Signal überhaupt empfangen wird, die Anzeige des Instruments also gültig ist, und um welches VOR es sich handelt. 
 
@@ -61,7 +61,7 @@ Das gerade gezeigte GRC-Programm dient als Grundlage zur Erzeugung des Signalver
 
 Eine weitere Softwarekomponente des Radiokompass ist unser Instrument, dessen Quellcode sich in Instrument.cxx befindet. Es nimmt die ermittelte Phasenverschiebung über Port 1234 vom GRC-Programm auf und zeichnet den eigentlichen Kompass. Die Darstellung der Richtungsangabe erfolgt dann wahlweise im ZUM-VOR oder VOM-VOR (inbound/outbound) Kurs. 
 
-![vor10](https://github.com/BM45/VOR/blob/main/pics4www/Vor_inbound_outbound.jpg)
+![vor10](https://github.com/radiolab81/VOR/blob/main/pics4www/Vor_inbound_outbound.jpg)
 
 Die Umstellung der Darstellung kann durch Tastendruck "T" oder über ein externes Bedienelement erfolgen. 
 Zusätzlich zeigt das Instrument auch die am SDR eingestellte Frequenz an. Diese kann durch die Tasten O und P (oder externen Drehencoder) verstellt werden.
@@ -75,7 +75,7 @@ Als Grundvoraussetzung wird ein Linux-System mit installiertem C/C++ Compilersys
 
 Nach dem Checkout des Projektes ins lokale Dateisystem mittels github:
 
-`git clone https://github.com/BM45/VOR`
+`git clone https://github.com/radiolab81/VOR`
 
 wird die Installation wie folgt eingeleitet:
 
